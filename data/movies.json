@@ -1,0 +1,11 @@
+[
+  {
+    "id": "1",
+    "title": "Inception",
+    "year": 2010,
+    "genre": "Ficção Científica",
+    "rating": 9,
+    "createdAt": "2024-10-23T12:00:00.000Z",
+    "updatedAt": "2024-10-23T12:00:00.000Z"
+  }
+]
