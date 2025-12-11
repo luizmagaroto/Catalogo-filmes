@@ -1,53 +1,55 @@
-import { promises as fs } from 'fs'
-import path from 'path'
+import prisma from '../prisma'
 import { Movie } from '../models/Movie'
 
-const FILE_PATH = path.join(__dirname, '../../data/movies.json')
-
-async function readData(): Promise<Movie[]> {
-  try {
-    const data = await fs.readFile(FILE_PATH, 'utf-8')
-    return JSON.parse(data)
-  } catch {
-    return []
+function mapPrismaToMovie(row: any): Movie {
+  return {
+    id: row.id,
+    title: row.title,
+    year: row.year,
+    genre: row.genre,
+    rating: row.rating,
+    createdAt: row.createdAt.toISOString(),
+    updatedAt: row.updatedAt.toISOString(),
   }
 }
 
-async function saveData(movies: Movie[]): Promise<void> {
-  await fs.mkdir(path.dirname(FILE_PATH), { recursive: true })
-  await fs.writeFile(FILE_PATH, JSON.stringify(movies, null, 2), 'utf-8')
-}
-
 export async function getAll(): Promise<Movie[]> {
-  return await readData()
+  const rows = await prisma.movie.findMany()
+  return rows.map(mapPrismaToMovie)
 }
 
 export async function getById(id: string): Promise<Movie | undefined> {
-  const movies = await readData()
-  return movies.find((m) => m.id === id)
+  const row = await prisma.movie.findUnique({ where: { id } })
+  if (!row) return undefined
+  return mapPrismaToMovie(row)
 }
 
 export async function create(movie: Movie): Promise<Movie> {
-  const movies = await readData()
-  movies.push(movie)
-  await saveData(movies)
-  return movie
+  const row = await prisma.movie.create({
+    data: {
+      title: movie.title,
+      year: movie.year,
+      genre: movie.genre,
+      rating: movie.rating,
+    },
+  })
+  return mapPrismaToMovie(row)
 }
 
 export async function update(id: string, data: Partial<Movie>): Promise<Movie | undefined> {
-  const movies = await readData()
-  const index = movies.findIndex((m) => m.id === id)
-  if (index === -1) return undefined
-
-  movies[index] = { ...movies[index], ...data, updatedAt: new Date().toISOString() }
-  await saveData(movies)
-  return movies[index]
+  try {
+    const row = await prisma.movie.update({ where: { id }, data: { ...data } as any })
+    return mapPrismaToMovie(row)
+  } catch (err: any) {
+    return undefined
+  }
 }
 
 export async function remove(id: string): Promise<boolean> {
-  const movies = await readData()
-  const updated = movies.filter((m) => m.id !== id)
-  if (updated.length === movies.length) return false
-  await saveData(updated)
-  return true
+  try {
+    await prisma.movie.delete({ where: { id } })
+    return true
+  } catch (err: any) {
+    return false
+  }
 }

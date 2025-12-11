@@ -1,11 +1,37 @@
 [
   {
     "id": "1",
-    "title": "Inception",
-    "year": 2010,
+    "title": "O Senhor dos Anéis: A Sociedade do Anel",
+    "year": 2001,
+    "genre": "Fantasia",
+    "rating": 9
+  },
+  {
+    "id": "2",
+    "title": "Matrix",
+    "year": 1999,
     "genre": "Ficção Científica",
-    "rating": 9,
-    "createdAt": "2024-10-23T12:00:00.000Z",
-    "updatedAt": "2024-10-23T12:00:00.000Z"
+    "rating": 8
+  },
+  {
+    "id": "3",
+    "title": "Vingadores: Ultimato",
+    "year": 2019,
+    "genre": "Ação",
+    "rating": 9
+  },
+  {
+    "id": "4",
+    "title": "Titanic",
+    "year": 1997,
+    "genre": "Romance",
+    "rating": 8
+  },
+  {
+    "id": "5",
+    "title": "Toy Story",
+    "year": 1995,
+    "genre": "Animação",
+    "rating": 7
   }
 ]

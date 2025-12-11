@@ -1,0 +1,13 @@
+{
+  "name": "catalogo-filmes-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shim package.json para executar scripts do subprojeto catalogo-filmes a partir da raiz",
+  "scripts": {
+    "test": "cd ./catalogo-filmes && npm run test",
+    "dev": "cd ./catalogo-filmes && npm run dev",
+    "start": "cd ./catalogo-filmes && npm run start",
+    "lint": "cd ./catalogo-filmes && npm run lint",
+    "format": "cd ./catalogo-filmes && npm run format"
+  }
+}

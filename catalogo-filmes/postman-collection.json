@@ -1,0 +1,131 @@
+{
+  "info": {
+    "name": "Catálogo de Filmes API",
+    "description": "Collection para testar endpoints da API de Filmes",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Filmes",
+      "item": [
+        {
+          "name": "Listar todos os filmes",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/movies",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "movies"]
+            }
+          }
+        },
+        {
+          "name": "Criar novo filme",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Inception\",\n  \"year\": 2010,\n  \"genre\": \"Sci-Fi\",\n  \"rating\": 8.8\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/movies",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "movies"]
+            }
+          }
+        },
+        {
+          "name": "Criar outro filme",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Interestelar\",\n  \"year\": 2014,\n  \"genre\": \"Drama\",\n  \"rating\": 8.6\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/movies",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "movies"]
+            }
+          }
+        },
+        {
+          "name": "Obter filme por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/movies/{{MOVIE_ID}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "movies", "{{MOVIE_ID}}"]
+            }
+          }
+        },
+        {
+          "name": "Atualizar filme",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Inception (Updated)\",\n  \"rating\": 9.0\n}"
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/movies/{{MOVIE_ID}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "movies", "{{MOVIE_ID}}"]
+            }
+          }
+        },
+        {
+          "name": "Deletar filme",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:3000/api/movies/{{MOVIE_ID}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "movies", "{{MOVIE_ID}}"]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "MOVIE_ID",
+      "value": "copie_aqui_o_id_do_filme"
+    }
+  ]
+}
